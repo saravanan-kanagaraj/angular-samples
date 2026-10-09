@@ -39,7 +39,6 @@ export class MainContentComponent implements AfterViewInit {
   sourceData: SourceDataCollection[] = [];
   @ViewChild('title', { static: true }) title!: ElementRef<HTMLElement>;
   @ViewChild('metaDescription', { static: true }) metaDescription!: ElementRef<HTMLElement>;
-  @ViewChild('categoryPill', { static: false }) categoryPill!: ElementRef<HTMLElement>;
   @ViewChild('tabContent', { static: true }) tabContent!: ElementRef<HTMLElement>;
   @ViewChild('demoTab', { static: true }) demoTab!: ElementRef<HTMLElement>;
   @ViewChild('sourceTab', { static: true }) sourceTab!: ElementRef<HTMLElement>;
@@ -68,14 +67,6 @@ export class MainContentComponent implements AfterViewInit {
   updateSampleDetails(sampleData: sampleInfo['samples'][0]): void {
     this.title.nativeElement.innerText = sampleData.sampleName;
     this.metaDescription.nativeElement.innerText = sampleData.metaData.description;
-    if (this.categoryPill) {
-      if (sampleData.category) {
-        this.categoryPill.nativeElement.innerText = sampleData.category.charAt(0).toUpperCase() + sampleData.category.slice(1);
-        this.categoryPill.nativeElement.style.display = 'inline-flex';
-      } else {
-        this.categoryPill.nativeElement.style.display = 'none';
-      }
-    }
     this.description.nativeElement.innerHTML = '';
     setTimeout(() => {
       const descriptionNode = this.tabContent.nativeElement.querySelector('#description');
